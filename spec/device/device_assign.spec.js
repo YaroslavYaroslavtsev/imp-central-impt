@@ -71,7 +71,6 @@ ImptTestHelper.OUTPUT_MODES.forEach((outputMode) => {
                         device_mac = commandOut.mac;
                         old_name = commandOut.name;
                         device_name = `${config.devices[config.deviceidx]}${config.suffix}`;
-                        console.log(`assign Device: name ${old_name} test name ${device_name}`);
                         agent_id = commandOut.agentid;
                     }
                     else fail("TestSuitInit error: Failed to get additional device attributes");
@@ -89,7 +88,7 @@ ImptTestHelper.OUTPUT_MODES.forEach((outputMode) => {
         // delete all entities using in impt device assign test suite
         function _testSuiteCleanUp() {
             return ImptTestHelper.runCommand(`impt product delete -p ${PRODUCT_NAME} -f -b -q`, ImptTestHelper.emptyCheck).
-                then(() => ImptTestHelper.runCommand(`impt device update -d ${config.devices[config.deviceidx]} --name ${old_name ? old_name : '""'}`, ImptTestHelper.emptyCheck)).
+                then(() => ImptTestHelper.runCommand(`impt device update -d ${config.devices[config.deviceidx]} --name ${old_name ? `"${old_name}"` : '""'}`, ImptTestHelper.emptyCheck)).
                 then(() => {
                     if (saved_dg_id) {
                         return ImptTestHelper.deviceAssign(saved_dg_id);
