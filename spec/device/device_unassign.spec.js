@@ -69,7 +69,7 @@ ImptTestHelper.OUTPUT_MODES.forEach((outputMode) => {
                         device_mac = commandOut.mac;
                         old_name = commandOut.name;
                         device_name = `${config.devices[config.deviceidx]}${config.suffix}`;
-                        console.log(`Device: name ${old_name} test name ${device_name}`);
+                        console.log(`unassign Device: name ${old_name} test name ${device_name}`);
                         agent_id = commandOut.agentid;
                     }
                     else fail("TestSuitInit error: Failed to get additional device attributes");
